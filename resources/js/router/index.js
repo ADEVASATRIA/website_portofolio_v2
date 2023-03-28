@@ -36,4 +36,8 @@ const router = createRouter({
     routes,
 })
 
+router.beforeEach((to,from)=>{
+    
+})
+
 export default router

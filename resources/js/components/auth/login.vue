@@ -1,5 +1,8 @@
 <script setup>
     import { reactive , ref} from 'vue'
+    import { useRouter } from 'vue-router'
+
+    const router = useRouter()
 
     let form = reactive({
         email: '',
@@ -8,6 +11,18 @@
 
     let error = ref('')
 
+    const login = async() => {
+        await axios.post('api/login',form)
+        .then(response=>{
+            //console.log(response)
+            if (response.data.success) {
+                localStorage.setItem('token',response.data.data.token)
+                router.push('/admin/home')
+            } else {
+                error.value = response.data.message;
+            }
+        })
+    }
     /*const login= async()=>{
         try{
             const response = await axios.post('api/login',form);
@@ -21,7 +36,7 @@
             error.value ='terjadi kesalahan pada proses login.';
         }
     }*/
-    const login = async()=>{
+    /*const login = async()=>{
         await axios.post('/api/login',form)
             .then(response=>{
                 if (response.data.success) {
@@ -30,7 +45,7 @@
                     error.value = response.data.message;
                 }
             })
-    }
+    }*/
 </script>
 
 <template>
@@ -111,5 +126,6 @@
 
     .text-danger{
         color:red;
+        font-size: 16px;
     }
 </style>
