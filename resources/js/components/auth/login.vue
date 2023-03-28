@@ -1,15 +1,34 @@
-<script>
-    import { reactive } from 'vue'
+<script setup>
+    import { reactive , ref} from 'vue'
 
     let form = reactive({
         email: '',
         password: '',
     })
 
+    let error = ref('')
+
+    /*const login= async()=>{
+        try{
+            const response = await axios.post('api/login',form);
+            if(response.data.success){
+                localStorage.setItem('token',response.data.token);
+            }else{
+                error.value = response.data.message;
+            }
+        }catch(error){
+            console.error(error);
+            error.value ='terjadi kesalahan pada proses login.';
+        }
+    }*/
     const login = async()=>{
         await axios.post('/api/login',form)
             .then(response=>{
-                console.log(response)
+                if (response.data.success) {
+                    localStorage.setItem('token', response.data.data.token)
+                } else {
+                    error.value = response.data.message;
+                }
             })
     }
 </script>
@@ -17,8 +36,9 @@
 <template>
     <div class="login">
         <div class="formLogin">
+            <p class="text-danger" v-if="error">{{ error }}</p>
             <form @submit.prevent="login">
-                <input type="email" placeholder="Enter email address" v-model="form.emai" />
+                <input type="email" placeholder="Enter email address" v-model="form.email" />
                 <br>
                 <input type="password" placeholder="Enter Password" v-model="form.password"/>
                 <br>
@@ -87,5 +107,9 @@
     .submit:focus{
         background: #43467f;
         color: #ffffff;
+    }
+
+    .text-danger{
+        color:red;
     }
 </style>
