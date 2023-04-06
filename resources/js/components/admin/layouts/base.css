@@ -94,7 +94,7 @@
   
   body {
     height: calc(100vh - 100px);
-    width: 100%;
+    width:100%;
     color: var(--text-color);
     background: var(--body-color);
     font-size: var(--body-font);

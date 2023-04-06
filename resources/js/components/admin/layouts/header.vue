@@ -1,12 +1,18 @@
 <script setup>
     import { ref } from 'vue'
-
+    import { useRouter } from 'vue-router';
+    const router = useRouter()
     const showNavHeader = ref(false)
 
     const openNavHeader = () => {
         showNavHeader.value = !showNavHeader.value
     }
     
+    const logout = () =>{
+        localStorage.removeItem('token')
+        router.push('/')
+        
+    }
 </script>
 <template>
     <!--==================== HEADER ====================-->
@@ -43,7 +49,7 @@
 
         <!-- Header Profile -->
         <div>
-            <span class="header_profile-name--nav">
+            <span class="header_profile-name--nav" v-bind:class="{show:showNavHeader}">
                 <span class="header_profile-name--nav--pointer">
                     <i class="fas fa-sort-up"></i>
                 </span>
@@ -59,7 +65,7 @@
                         </a>
                     </li>
                     <li class="header_profile-name--nav--item">
-                        <a class="header_profile-name--nav--link" href="#">
+                        <a class="header_profile-name--nav--link" href="#" @click="logout">
                             Logout 
                         </a>
                     </li>

@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 //admin
 import homeAdminIndex from "../components/admin/home/index.vue";
+import aboutAdminIndex from "../components/admin/about/index.vue";
 //pages
 import homePageIndex from "../components/pages/home/index.vue";
 //login
@@ -18,6 +19,15 @@ const routes = [
        meta: {
         requiresAuth:true
         } 
+    },
+
+    {
+       path: '/admin/about',
+       name:'adminAbout',
+       component: aboutAdminIndex,
+       meta:{
+        requireAuth:true
+       }
     },
     //pages
     {
