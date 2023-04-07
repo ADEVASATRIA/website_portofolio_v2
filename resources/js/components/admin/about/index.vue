@@ -4,6 +4,7 @@
     import axios from 'axios';
 
     let form = ref({
+        //id: '',
         name: '',
         photo: '',
         email: '',
@@ -73,7 +74,7 @@
     }
 
     const updateAbout = async()=>{
-        await axios.post('/api/update_about/${form.value.id}', form.value)
+        await axios.post(`/api/update_about/${form.value.id}` , form.value)
             .then(response =>{
                 toast.fire({
                     icon: "success",
@@ -127,7 +128,7 @@
                             </div>
                         </div>
                         
-                        <div class="wrapper_right ">
+                          <div class="wrapper_right ">
                             <div class="card">
                                 <div class="avatar_profile">
                                  <img :src="getPhoto()" alt="" class="avatar_profile_img">
@@ -138,7 +139,7 @@
                                 <p>CV</p>
                                 <input type="file" id="filecv" @change="uploadCv"/>    
                             </div>     
-                        </div>
+                        </div>  
                         
                     </div>
                     <div class="titlebar">
