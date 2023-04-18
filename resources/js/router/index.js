@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import homeAdminIndex from "../components/admin/home/index.vue";
 import aboutAdminIndex from "../components/admin/about/index.vue";
 import adminServiceIndex from "../components/admin/services/index.vue";
+import adminSkillsIndex from "../components/admin/skills/index.vue";
 
 //pages
 import homePageIndex from "../components/pages/home/index.vue";
@@ -35,6 +36,14 @@ const routes = [
         path: '/admin/services',
         name: 'adminservice',
         component: adminServiceIndex,
+        meta:{
+            requiresAuth:true
+        }
+    },
+    {
+        path: '/admin/skills',
+        name: 'adminSkill',
+        component: adminSkillsIndex,
         meta:{
             requiresAuth:true
         }

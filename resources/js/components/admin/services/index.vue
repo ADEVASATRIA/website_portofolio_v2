@@ -1,7 +1,7 @@
 <script setup>
     import axios from 'axios';
-import Base from '../layouts/base.vue'
-    import { onMounted, ref, toDisplayString } from 'vue';
+    import Base from '../layouts/base.vue'
+    import { onMounted, ref } from 'vue';
 
     let services = ref([])
     const showModal = ref(false)

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\AuthController;
 use App\Http\Controllers\API\AboutController;
 use App\Http\Controllers\API\ServiceController;
+use App\Http\Controllers\API\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +31,8 @@ Route::controller(AboutController::class)->group(function(){
 Route::controller(ServiceController::class)->group(function(){
     Route::get('get_all_service', 'get_all_service');
     Route::post('create_service', 'create_service');
+});
+
+Route::controller(SkillController::class)->group(function(){
+    Route::get('/get_all_skill', 'get_all_skill');
 });
